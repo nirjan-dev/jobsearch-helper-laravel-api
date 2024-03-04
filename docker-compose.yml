@@ -1,0 +1,23 @@
+services:
+    web:
+        build:
+            context: .
+            dockerfile: dockerfile
+        entrypoint: php artisan octane:frankenphp --max-requests=1 --https --host=localhost --port=443 --admin-port=2019
+        ports:
+            - "80:8000"
+            - "443:443"
+        volumes:
+            - .:/app
+    mailpit:
+        image: axllent/mailpit
+        volumes:
+            - ./data:/data
+        ports:
+            - 8025:8025
+            - 1025:1025
+        environment:
+            MP_MAX_MESSAGES: 5000
+            MP_DATA_FILE: /data/mailpit.db
+            MP_SMTP_AUTH_ACCEPT_ANY: 1
+            MP_SMTP_AUTH_ALLOW_INSECURE: 1
