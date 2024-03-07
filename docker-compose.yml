@@ -2,7 +2,7 @@ services:
     web:
         build:
             context: .
-            dockerfile: dockerfile
+            dockerfile: Dockerfile
         entrypoint: php artisan octane:frankenphp --max-requests=1 --https --host=localhost --port=443 --admin-port=2019
         ports:
             - "80:8000"
