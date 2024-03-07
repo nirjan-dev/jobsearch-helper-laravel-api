@@ -6,7 +6,7 @@ RUN apt update && apt install -y supervisor
 
 COPY . /app
 
-COPY ./docker/frankenphp/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY ./supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 WORKDIR /app
 
