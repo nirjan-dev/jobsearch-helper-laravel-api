@@ -6,6 +6,8 @@ ENV SERVER_NAME="http://"
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
+    git \
+    unzip \
     supervisor
 
 RUN install-php-extensions \
@@ -32,4 +34,4 @@ EXPOSE 80 443
 
 
 # Start Supervisor.
-CMD ["/usr/bin/supervisord", "-n" "-c", "/etc/supervisor/conf.d/supervisord.conf"]
+CMD ["supervisord","-c", "/etc/supervisor/conf.d/supervisord.conf"]
