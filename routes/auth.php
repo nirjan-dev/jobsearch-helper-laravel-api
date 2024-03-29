@@ -17,6 +17,8 @@ Route::post('/login', [AuthenticatedSessionController::class, 'store'])
     ->middleware('guest')
     ->name('login');
 
+Route::get('login/{user}', [AuthenticatedSessionController::class, 'loginWithToken'])->name('login.token')->middleware(('signed'));
+
 Route::post('/forgot-password', [PasswordResetLinkController::class, 'store'])
     ->middleware('guest')
     ->name('password.email');
