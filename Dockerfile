@@ -30,7 +30,7 @@ RUN composer install
 # Set permissions for Laravel.
 RUN chown -R www-data:www-data storage bootstrap/cache
 
-EXPOSE 80 443
+EXPOSE 8080 443
 
 
 # Start Supervisor.

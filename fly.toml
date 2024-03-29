@@ -1,0 +1,47 @@
+# fly.toml app configuration file generated for jobsearch-backend on 2024-03-29T16:49:22+05:45
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'jobsearch-backend'
+primary_region = 'bos'
+console_command = 'php /var/www/html/artisan tinker'
+
+[build]
+[build.args]
+NODE_VERSION = '18'
+PHP_VERSION = '8.2'
+
+[env]
+APP_ENV = 'production'
+LOG_CHANNEL = 'stderr'
+LOG_LEVEL = 'info'
+LOG_STDERR_FORMATTER = 'Monolog\Formatter\JsonFormatter'
+
+SESSION_DRIVER = 'cookie'
+SESSION_SECURE_COOKIE = 'true'
+SESSION_DOMAIN = ".nirjan.net"
+SANCTUM_STATEFUL_DOMAINS = "jobsearch.nirjan.net"
+
+MAIL_MAILER = 'resend'
+MAIL_FROM_ADDRESS = "info@jobsearch.nirjan.net"
+MAIL_FROM_NAME = "${APP_NAME}"
+
+OCTANE_SERVER = "frankenphp"
+
+DB_CONNECTION = "pgsql"
+
+APP_URL = "https://jobsearch-api.nirjan.net"
+FRONTEND_URL = "https://jobsearch.nirjan.net"
+
+
+[http_service]
+internal_port = 8080
+force_https = true
+auto_stop_machines = true
+auto_start_machines = true
+min_machines_running = 0
+processes = ['app']
+
+[[vm]]
+size = 'shared-cpu-1x'
