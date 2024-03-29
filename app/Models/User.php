@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Enums\OAuthProvider;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -20,7 +22,10 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
-        'password',
+        'oauth_id',
+        'oauth_provider',
+        'oauth_token',
+        'oath_refresh_token',
     ];
 
     /**
@@ -29,8 +34,8 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'password',
-        'remember_token',
+        'oauth_token',
+        'oauth_refresh_token',
     ];
 
     /**
@@ -41,5 +46,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+        'oauth_provider' => OAuthProvider::class,
+        'oauth_refresh_token' => 'encrypted',
     ];
 }

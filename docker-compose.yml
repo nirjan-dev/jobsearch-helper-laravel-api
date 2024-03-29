@@ -1,14 +1,4 @@
 services:
-    web:
-        build:
-            context: .
-            dockerfile: Dockerfile
-        entrypoint: php artisan octane:frankenphp --max-requests=1 --https --host=localhost --port=443 --admin-port=2019
-        ports:
-            - "80:8000"
-            - "443:443"
-        volumes:
-            - .:/app
     mailpit:
         image: axllent/mailpit
         volumes:
@@ -21,3 +11,13 @@ services:
             MP_DATA_FILE: /data/mailpit.db
             MP_SMTP_AUTH_ACCEPT_ANY: 1
             MP_SMTP_AUTH_ALLOW_INSECURE: 1
+    postgres:
+        image: postgres
+        volumes:
+            - ./data/postgres:/var/lib/postgresql/data
+        ports:
+            - 5432:5432
+        environment:
+            POSTGRES_DB: jobSearchHelper
+            POSTGRES_USER: nirjan
+            POSTGRES_PASSWORD: password
