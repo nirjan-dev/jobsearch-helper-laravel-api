@@ -25,7 +25,7 @@ SANCTUM_STATEFUL_DOMAINS = "jobsearch.nirjan.net"
 
 MAIL_MAILER = 'resend'
 MAIL_FROM_ADDRESS = "info@jobsearch.nirjan.net"
-MAIL_FROM_NAME = "${APP_NAME}"
+MAIL_FROM_NAME = "Job Search Helper"
 
 OCTANE_SERVER = "frankenphp"
 
