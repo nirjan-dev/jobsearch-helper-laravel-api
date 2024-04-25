@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +19,7 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/users', function () {
-    return \App\Models\User::all();
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/user/{user}/resume', [UserController::class, 'getResume']);
+    Route::post('/user/{user}/resume', [UserController::class, 'saveResume']);
 });

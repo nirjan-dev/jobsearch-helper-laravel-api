@@ -6,6 +6,7 @@ namespace App\Models;
 
 use App\Enums\OAuthProvider;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -49,4 +50,9 @@ class User extends Authenticatable
         'oauth_provider' => OAuthProvider::class,
         'oauth_refresh_token' => 'encrypted',
     ];
+
+    public function resume(): HasOne
+    {
+        return $this->hasOne(Resume::class);
+    }
 }
